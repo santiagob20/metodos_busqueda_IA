@@ -192,7 +192,12 @@
                     ef: [[], [], []],
                     method: ''
                 },
-                flag_allowed: true
+                flag_allowed_ei: true,
+                flag_allowed_ef: true,
+                flag_unique_ei: true,
+                flag_unique_ef: true,
+                flag_null_ei: true,
+                flag_null_ef: true
             },
             created: function () {
 
@@ -200,7 +205,9 @@
             watch: {},
             methods: {
                 sendSearchMethod: function () {
-                    this.flag_allowed = true;
+                    this.flag_allowed_ei = true;
+                    this.flag_unique_ei = true;
+                    this.flag_null_ei = true;
                     let tmpArray = []
                     // obtener el metodo
                     let arrCheckboxes = document.getElementsByName("search_method")
@@ -225,8 +232,13 @@
                     for (let i = 0; i < this.dataGraph.ei.length; i++) {
                         for (let j = 0; j < this.dataGraph.ei[i].length; j++) {
                             tmpArray.push(this.dataGraph.ei[i][j])
+                            // validacion de datos mayores a 0 y menores a 9
                             if (parseInt(this.dataGraph.ei[i][j]) < 0 || parseInt(this.dataGraph.ei[i][j]) > 8) {
-                                this.flag_allowed = false;
+                                this.flag_allowed_ei = false;
+                            }
+                            // validacion de datos no nulos
+                            if (this.dataGraph.ei[i][j] == "") {
+                                this.flag_null_ei = false;
                             }
                         }
                     }
@@ -237,17 +249,20 @@
                         return c.indexOf(a, b + 1) < 0
                     });
 
-                    if(tmpArray.length !== tmpArray.unique().length){
-                        this.flag_allowed = false;
-                    }else{
-                        this.flag_allowed = true;
+                    // validación de datos únicos
+                    if (tmpArray.length !== tmpArray.unique().length) {
+                        this.flag_unique_ei = false;
+                    } else {
+                        this.flag_unique_ei = true;
                     }
 
 
-                    if (this.flag_allowed) {
+
+                    if (this.flag_allowed_ei && this.flag_unique_ei && this.flag_null_ei) {
                         // aca hace peticion http
+                        console.log(this.dataGraph.ei)
                     } else {
-                        console.log("Los datos ingresados no son válidos. Recuerde que solo puede ingresar números del 0 al 8 sin repetir")
+                        alert("Los datos ingresados no son válidos. Recuerde que solo puede ingresar números del 0 al 8 sin repetir")
                     }
 
                     // console.log(dataGraph)
