@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!--Import Google Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Métodos de búsqueda</title>
+  <style>
+    body {
+      background: linear-gradient(rgba(255, 255, 255, 0.7),
+          rgba(255, 255, 255, 0.9)),
+        url("https://cdn.pixabay.com/photo/2016/05/31/15/34/nodes-1427176_960_720.png");
+      background-size: cover;
+    }
+    /* colors 
+    red: #8F1D00
+    blue: #173691
+    green: #569109
+    gray: #333333
+    
+    */
+
+    .nav-wrapper {
+      background-color: #333333;
+      border-bottom-color: #8F1D00;
+      border-style: inset;
+      border-width: 0px 0px 7px 0px;
+    }
+
+    #logo_navbar {
+      width: 14%;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo"><img id="logo_navbar"
+          src="https://www.ucentral.edu.co/sites/default/files/inline-images/logosimbolo-ucentral-vigilada_1.png"
+          alt=""></a>
+      <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul> -->
+    </div>
+  </nav>
+  {% block body%}
+  {% endblock%}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>

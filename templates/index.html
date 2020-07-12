@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!--Import Google Font-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
+    <!--Import Bootstrap.css-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Impoort fontawesome -->
+    <script src="https://kit.fontawesome.com/285bb2ec9d.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Métodos de búsqueda</title>
+    <style>
+        body {
+            background: linear-gradient(rgba(255, 255, 255, 0.7),
+                    rgba(255, 255, 255, 0.9)),
+                url("https://cdn.pixabay.com/photo/2016/05/31/15/34/nodes-1427176_960_720.png");
+            background-size: cover;
+        }
+
+        /* colors 
+    red: #8F1D00
+    blue: #173691
+    green: #569109
+    gray: #333333
+    
+    */
+
+        .nav-wrapper {
+            background-color: #333333;
+            border-bottom-color: #8F1D00;
+            border-style: inset;
+            border-width: 0px 0px 7px 0px;
+        }
+
+        #logo_navbar {
+            width: 10%;
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+        }
+
+        i {
+            margin-left: 3px !important;
+        }
+
+        .inputmatriz {
+            width: 45px;
+            height: 45px;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img id="logo_navbar" src="../static/images/logo-u-central.png" class="d-inline-block align-top" alt=""
+                loading="lazy">
+            Algoritmos de búsqueda
+        </a>
+    </nav>
+
+    <div class="container" id="app">
+        <br>
+        <div class="row">
+            <div class="col-lg-6 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        Formulario de ingreso de parámetros
+                    </div>
+                    <form>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6" align="center">
+                                    <h5 class="card-title">Estado inicial</h5>
+                                    <div>
+                                        <input id="ei_0" class="inputmatriz" type="number">
+                                        <input id="ei_1" class="inputmatriz" type="number">
+                                        <input id="ei_2" class="inputmatriz" type="number">
+                                    </div>
+                                    <div>
+                                        <input id="ei_3" class="inputmatriz" type="number">
+                                        <input id="ei_4" class="inputmatriz" type="number">
+                                        <input id="ei_5" class="inputmatriz" type="number">
+                                    </div>
+                                    <div>
+                                        <input id="ei_6" class="inputmatriz" type="number">
+                                        <input id="ei_7" class="inputmatriz" type="number">
+                                        <input id="ei_8" class="inputmatriz" type="number">
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6" align="center">
+                                    <h5 class="card-title">Estado final</h5>
+                                    <div>
+                                        <input id="ef_0" class="inputmatriz" type="text">
+                                        <input id="ef_1" class="inputmatriz" type="text">
+                                        <input id="ef_2" class="inputmatriz" type="text">
+                                    </div>
+                                    <div>
+                                        <input id="ef_3" class="inputmatriz" type="text">
+                                        <input id="ef_4" class="inputmatriz" type="text">
+                                        <input id="ef_5" class="inputmatriz" type="text">
+                                    </div>
+                                    <div>
+                                        <input id="ef_6" class="inputmatriz" type="text">
+                                        <input id="ef_7" class="inputmatriz" type="text">
+                                        <input id="ef_8" class="inputmatriz" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="method1" v-model="methodtype" name="search_method" value="bpp"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="method1">BPP</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="method2" v-model="methodtype" name="search_method" value="bpa"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="method2">BPA</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="method3" v-model="methodtype" name="search_method" value="hill"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="method3">Hill Climbing</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="method4" v-model="methodtype" name="search_method" value="ram"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="method4">Ramificación y acotamiento</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="method5" v-model="methodtype" name="search_method" value="a*"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="method5">A*</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" id="method6" v-model="methodtype" name="search_method" value="gen"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="method6">Algoritmo genético</label>
+                            </div>
+                            <br>
+                            <div class="input-group input-group-sm mb-3" v-if="methodtype == 'bpp'">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-sm">Límite de niveles</span>
+                                </div>
+                                <input type="number" class="form-control" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm">
+                            </div>
+
+                            <button class="btn btn-primary" style="background-color: #333333;" type="button"
+                                @click="sendSearchMethod">Calcular<i class="fas fa-brain"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <!-- <script src="{{ url_for('static', filename='js/index.js')}}"></script> -->
+    <script>
+        var app = new Vue({
+            el: '#app',
+            delimiters: ["<%", "%>"],
+            data: {
+                methodtype: '',
+                dataGraph: {
+                    ei: [[], [], []],
+                    ef: [[], [], []],
+                    method: ''
+                },
+                flag_allowed: true
+            },
+            created: function () {
+
+            },
+            watch: {},
+            methods: {
+                sendSearchMethod: function () {
+                    this.flag_allowed = true;
+                    let tmpArray = []
+                    // obtener el metodo
+                    let arrCheckboxes = document.getElementsByName("search_method")
+                    arrCheckboxes.forEach(el => {
+                        if (el.checked) {
+                            this.dataGraph.method = el.defaultValue
+                        }
+                    });
+
+                    // obtener el estado inicial
+                    this.dataGraph.ei = [[], [], []]
+                    this.dataGraph.ei[0].push(document.getElementById("ei_0").value)
+                    this.dataGraph.ei[0].push(document.getElementById("ei_1").value)
+                    this.dataGraph.ei[0].push(document.getElementById("ei_2").value)
+                    this.dataGraph.ei[1].push(document.getElementById("ei_3").value)
+                    this.dataGraph.ei[1].push(document.getElementById("ei_4").value)
+                    this.dataGraph.ei[1].push(document.getElementById("ei_5").value)
+                    this.dataGraph.ei[2].push(document.getElementById("ei_6").value)
+                    this.dataGraph.ei[2].push(document.getElementById("ei_7").value)
+                    this.dataGraph.ei[2].push(document.getElementById("ei_8").value)
+
+                    for (let i = 0; i < this.dataGraph.ei.length; i++) {
+                        for (let j = 0; j < this.dataGraph.ei[i].length; j++) {
+                            tmpArray.push(this.dataGraph.ei[i][j])
+                            if (parseInt(this.dataGraph.ei[i][j]) < 0 || parseInt(this.dataGraph.ei[i][j]) > 8) {
+                                this.flag_allowed = false;
+                            }
+                        }
+                    }
+
+                    Array.prototype.unique = function (a) {
+                        return function () { return this.filter(a) }
+                    }(function (a, b, c) {
+                        return c.indexOf(a, b + 1) < 0
+                    });
+
+                    if(tmpArray.length !== tmpArray.unique().length){
+                        this.flag_allowed = false;
+                    }else{
+                        this.flag_allowed = true;
+                    }
+
+
+                    if (this.flag_allowed) {
+                        // aca hace peticion http
+                    } else {
+                        console.log("Los datos ingresados no son válidos. Recuerde que solo puede ingresar números del 0 al 8 sin repetir")
+                    }
+
+                    // console.log(dataGraph)
+
+                },
+                modalInit: function (modalBody) {
+                    document.getElementById('modalBody').innerHTML = modalBody
+
+                    const elem = document.getElementById('modal1')
+                    const instance = M.Modal.init(elem, {
+                        dismissible: true,
+                        preventScrolling: true,
+                        startingTop: '4%'
+                    })
+                    instance.open()
+                },
+
+            },
+            computed: {
+
+            },
+            updated: function () { },
+            mounted() {
+
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
