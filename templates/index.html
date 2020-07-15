@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Métodos de búsqueda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <style>
         body {
             background: linear-gradient(rgba(255, 255, 255, 0.7),
@@ -21,17 +22,36 @@
             background-size: cover;
         }
 
-        /* colors 
-    red: #8F1D00
-    blue: #173691
-    green: #569109
-    gray: #333333
-    
-    */
+        /* colors */
+        body {
+            --color1: #8F1D00;
+            --color2: #173691;
+            --color3: #569109;
+            --color4: #333333;
+            --color5: #ffffff;
+        }
 
-        .nav-wrapper {
-            background-color: #333333;
-            border-bottom-color: #8F1D00;
+        /* -------------fonts---------------- */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color4);
+        }
+
+        .txt-dark {
+            color: var(--color4)
+        }
+
+        .txt-light {
+            color: var(--color5);
+        }
+        .txt-red{
+            color: var(--color2);
+
+        }
+
+        .navbar {
+            background-color: var(--color4);
+            border-bottom-color: var(--color1);
             border-style: inset;
             border-width: 0px 0px 7px 0px;
         }
@@ -49,8 +69,8 @@
         }
 
         .inputmatriz {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             margin-bottom: 4px;
         }
     </style>
@@ -66,10 +86,27 @@
         </a>
     </nav>
 
-    <div class="container" id="app">
+    <div class="container-fluid" id="app">
         <br>
         <div class="row">
-            <div class="col-lg-6 col-sm-12">
+            <div class="col-lg-2">
+                <!-- TOAST -->
+                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="ttoast">
+                    <div class="toast-header txt-red">
+                        <i class="fas fa-brain"></i>
+                        <strong class="mr-auto">Aviso de notificación</strong>
+                        <small>Ahora</small>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        [[alert_message]]
+                    </div>
+                </div>
+            </div>
+            <!-- card1 -->
+            <div class="col-lg-5 col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         Formulario de ingreso de parámetros
@@ -80,38 +117,38 @@
                                 <div class="col-lg-6" align="center">
                                     <h5 class="card-title">Estado inicial</h5>
                                     <div>
-                                        <input id="ei_0" class="inputmatriz" type="number">
-                                        <input id="ei_1" class="inputmatriz" type="number">
-                                        <input id="ei_2" class="inputmatriz" type="number">
+                                        <input id="ei_0" class="inputmatriz" type="number" value="3">
+                                        <input id="ei_1" class="inputmatriz" type="number" value="4">
+                                        <input id="ei_2" class="inputmatriz" type="number" value="2">
                                     </div>
                                     <div>
-                                        <input id="ei_3" class="inputmatriz" type="number">
-                                        <input id="ei_4" class="inputmatriz" type="number">
-                                        <input id="ei_5" class="inputmatriz" type="number">
+                                        <input id="ei_3" class="inputmatriz" type="number" value="8">
+                                        <input id="ei_4" class="inputmatriz" type="number" value="0">
+                                        <input id="ei_5" class="inputmatriz" type="number" value="6">
                                     </div>
                                     <div>
-                                        <input id="ei_6" class="inputmatriz" type="number">
-                                        <input id="ei_7" class="inputmatriz" type="number">
-                                        <input id="ei_8" class="inputmatriz" type="number">
+                                        <input id="ei_6" class="inputmatriz" type="number" value="1">
+                                        <input id="ei_7" class="inputmatriz" type="number" value="7">
+                                        <input id="ei_8" class="inputmatriz" type="number" value="5">
                                     </div>
 
                                 </div>
                                 <div class="col-lg-6" align="center">
                                     <h5 class="card-title">Estado final</h5>
                                     <div>
-                                        <input id="ef_0" class="inputmatriz" type="text">
-                                        <input id="ef_1" class="inputmatriz" type="text">
-                                        <input id="ef_2" class="inputmatriz" type="text">
+                                        <input id="ef_0" class="inputmatriz" type="number" value="1">
+                                        <input id="ef_1" class="inputmatriz" type="number" value="2">
+                                        <input id="ef_2" class="inputmatriz" type="number" value="3">
                                     </div>
                                     <div>
-                                        <input id="ef_3" class="inputmatriz" type="text">
-                                        <input id="ef_4" class="inputmatriz" type="text">
-                                        <input id="ef_5" class="inputmatriz" type="text">
+                                        <input id="ef_3" class="inputmatriz" type="number" value="4">
+                                        <input id="ef_4" class="inputmatriz" type="number" value="5">
+                                        <input id="ef_5" class="inputmatriz" type="number" value="6">
                                     </div>
                                     <div>
-                                        <input id="ef_6" class="inputmatriz" type="text">
-                                        <input id="ef_7" class="inputmatriz" type="text">
-                                        <input id="ef_8" class="inputmatriz" type="text">
+                                        <input id="ef_6" class="inputmatriz" type="number" value="7">
+                                        <input id="ef_7" class="inputmatriz" type="number" value="8">
+                                        <input id="ef_8" class="inputmatriz" type="number" value="0">
                                     </div>
                                 </div>
                             </div>
@@ -147,15 +184,15 @@
                                 <label class="custom-control-label" for="method6">Algoritmo genético</label>
                             </div>
                             <br>
-                            <div class="input-group input-group-sm mb-3" v-if="methodtype == 'bpp'">
+                            <div class="input-group input-group-sm mb-3" v-if="methodtype == 'bpp'" style="width: 50%;">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroup-sizing-sm">Límite de niveles</span>
                                 </div>
                                 <input type="number" class="form-control" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-sm">
+                                    id="bpp_limit" aria-describedby="inputGroup-sizing-sm">
                             </div>
-
-                            <button class="btn btn-primary" style="background-color: #333333;" type="button"
+                            <br>
+                            <button class="btn btn-primary btn-block" style="background-color: #333333;" type="button"
                                 @click="sendSearchMethod">Calcular<i class="fas fa-brain"></i></button>
                         </div>
                     </form>
@@ -166,7 +203,21 @@
 
 
             </div>
+            <!-- card2 -->
+            <div class="col-lg-5 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        Resultados
+                    </div>
+                    <div class="card-body">
+                        <h6>Nodos generados: [[nodos_result]]</h6>
+                        <h6>Resultado generados: [[data_result]]</h6>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
     </div>
 
 
@@ -180,11 +231,12 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     <!-- <script src="{{ url_for('static', filename='js/index.js')}}"></script> -->
     <script>
         var app = new Vue({
             el: '#app',
-            delimiters: ["<%", "%>"],
+            delimiters: ["[[", "]]"],
             data: {
                 methodtype: '',
                 dataGraph: {
@@ -192,23 +244,33 @@
                     ef: [[], [], []],
                     method: ''
                 },
-                flag_allowed_ei: true,
-                flag_allowed_ef: true,
-                flag_unique_ei: true,
-                flag_unique_ef: true,
-                flag_null_ei: true,
-                flag_null_ef: true
+                flag_allowed: true,
+                flag_unique: true,
+                flag_null: true,
+                URI: 'http://127.0.0.1:5000',
+                nodos_result: 0,
+                data_result: {},
+                alert_message: ''
             },
             created: function () {
 
             },
             watch: {},
             methods: {
+                showToast: function (val) {
+                    option = {
+                        delay: 6000
+                    }
+                    this.alert_message = val
+                    $('#ttoast').toast(option)
+                    $('#ttoast').toast('show')
+                },
                 sendSearchMethod: function () {
-                    this.flag_allowed_ei = true;
-                    this.flag_unique_ei = true;
-                    this.flag_null_ei = true;
-                    let tmpArray = []
+                    this.flag_allowed = true;
+                    this.flag_unique = true;
+                    this.flag_null = true;
+                    let tmpArray_ei = []
+                    let tmpArray_ef = []
                     // obtener el metodo
                     let arrCheckboxes = document.getElementsByName("search_method")
                     arrCheckboxes.forEach(el => {
@@ -229,19 +291,17 @@
                     this.dataGraph.ei[2].push(document.getElementById("ei_7").value)
                     this.dataGraph.ei[2].push(document.getElementById("ei_8").value)
 
-                    for (let i = 0; i < this.dataGraph.ei.length; i++) {
-                        for (let j = 0; j < this.dataGraph.ei[i].length; j++) {
-                            tmpArray.push(this.dataGraph.ei[i][j])
-                            // validacion de datos mayores a 0 y menores a 9
-                            if (parseInt(this.dataGraph.ei[i][j]) < 0 || parseInt(this.dataGraph.ei[i][j]) > 8) {
-                                this.flag_allowed_ei = false;
-                            }
-                            // validacion de datos no nulos
-                            if (this.dataGraph.ei[i][j] == "") {
-                                this.flag_null_ei = false;
-                            }
-                        }
-                    }
+                    // obtener el estado final
+                    this.dataGraph.ef = [[], [], []]
+                    this.dataGraph.ef[0].push(document.getElementById("ef_0").value)
+                    this.dataGraph.ef[0].push(document.getElementById("ef_1").value)
+                    this.dataGraph.ef[0].push(document.getElementById("ef_2").value)
+                    this.dataGraph.ef[1].push(document.getElementById("ef_3").value)
+                    this.dataGraph.ef[1].push(document.getElementById("ef_4").value)
+                    this.dataGraph.ef[1].push(document.getElementById("ef_5").value)
+                    this.dataGraph.ef[2].push(document.getElementById("ef_6").value)
+                    this.dataGraph.ef[2].push(document.getElementById("ef_7").value)
+                    this.dataGraph.ef[2].push(document.getElementById("ef_8").value)
 
                     Array.prototype.unique = function (a) {
                         return function () { return this.filter(a) }
@@ -249,37 +309,62 @@
                         return c.indexOf(a, b + 1) < 0
                     });
 
-                    // validación de datos únicos
-                    if (tmpArray.length !== tmpArray.unique().length) {
-                        this.flag_unique_ei = false;
-                    } else {
-                        this.flag_unique_ei = true;
+                    for (let i = 0; i < this.dataGraph.ei.length; i++) {
+                        for (let j = 0; j < this.dataGraph.ei[i].length; j++) {
+                            tmpArray_ei.push(this.dataGraph.ei[i][j])
+                            tmpArray_ef.push(this.dataGraph.ef[i][j])
+                            // validacion de datos mayores a 0 y menores a 9
+                            if (parseInt(this.dataGraph.ei[i][j]) < 0
+                                || parseInt(this.dataGraph.ei[i][j]) > 8
+                                || parseInt(this.dataGraph.ef[i][j]) < 0
+                                || parseInt(this.dataGraph.ef[i][j]) > 8) {
+                                this.flag_allowed = false;
+                            }
+                            // validacion de datos no nulos
+                            if (this.dataGraph.ei[i][j] == "" || this.dataGraph.ef[i][j] == "") {
+                                this.flag_null = false;
+                            }
+                        }
                     }
 
 
 
-                    if (this.flag_allowed_ei && this.flag_unique_ei && this.flag_null_ei) {
-                        // aca hace peticion http
-                        console.log(this.dataGraph.ei)
+                    // validación de datos únicos
+                    if (tmpArray_ei.length !== tmpArray_ei.unique().length || tmpArray_ef.length !== tmpArray_ef.unique().length) {
+                        this.flag_unique = false;
                     } else {
-                        alert("Los datos ingresados no son válidos. Recuerde que solo puede ingresar números del 0 al 8 sin repetir")
+                        this.flag_unique = true;
+                    }
+
+
+
+                    if (this.flag_allowed && this.flag_unique && this.flag_null) {
+                        if (this.dataGraph.method != "") {
+                            if (this.dataGraph.method == 'bpp') {
+                                this.dataGraph.bpp_limit = parseInt(document.getElementById("bpp_limit").value)
+                            }
+                            let context = this;
+                            // aca hace peticion http
+                            axios.post(context.URI + '/search_method', context.dataGraph).then(response => {
+                                context.showToast("Algoritmo ejecutado correctamente")
+                                // Respuesta del servidor
+                                console.log(response.data)
+                                context.nodos_result = response.data.data.total_nodes
+                                context.data_result = response.data.data.route
+                            }).catch(e => {
+                                console.log(e);
+                            });
+                        } else {
+                            this.showToast("Seleccione un método de búsqueda primero")
+                        }
+
+                    } else {
+                        this.showToast("Los datos ingresados no son válidos. Recuerde que solo puede ingresar números del 0 al 8 sin repetirlos en la matriz")
                     }
 
                     // console.log(dataGraph)
 
                 },
-                modalInit: function (modalBody) {
-                    document.getElementById('modalBody').innerHTML = modalBody
-
-                    const elem = document.getElementById('modal1')
-                    const instance = M.Modal.init(elem, {
-                        dismissible: true,
-                        preventScrolling: true,
-                        startingTop: '4%'
-                    })
-                    instance.open()
-                },
-
             },
             computed: {
 

@@ -1,77 +1,45 @@
-from flask import Flask, render_template, request, redirect, url_for,flash,jsonify
-from flask_mysqldb import MySQL
-from flask_materialize import Material
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+# from flask_mysqldb import MySQL
 import json
-
+from algorithms import Algorithms
 
 app = Flask(__name__)
 
-# mysql connection
-# app.config['MYSQL_HOST']= '10.32.3.6'
-# app.config['MYSQL_USER']= 'root'
-# app.config['MYSQL_PASSWORD']= 'Identidad2018@.'
-# app.config['MYSQL_DB']= 'test'
-# mysql = MySQL(app)
-
 # datos de navegacion
-app.secret_key='mysecretkey'
+app.secret_key = 'mysecretkey'
+
+alg = Algorithms()
+
 
 @app.route('/')
 def Index():
-    # cur =mysql.connection.cursor()
-    # cur.execute('SELECT * FROM info')
-    # data = cur.fetchall()
-    # print(data)
     return render_template('index.html')
-    # return render_template('index.html', contacts= data)
 
 
 @app.route('/search_method', methods=['POST'])
-def add_contact():
+def search_method():
+    exec_alg= None
     if request.method == 'POST':
-        data = request.get_json()
-        # flash('Contact added succesfully')
-        # return jsonify(
-        #     code=1,
-        #     description='post 200',
-        #     data= data
-        # )
-        print(data)
-    return render_template('index.html')
-
-# @app.route('/edit/<id>')
-# def edit_contact(id):
-#     cur = mysql.connection.cursor()
-#     cur.execute('select * from info where id = %s',(id))
-#     data = cur.fetchall()
-#     return render_template('editcontact.html', contact= data[0])
-
-
-# @app.route('/delete/<string:id>')
-# def delete_contact(id):
-#     cur = mysql.connection.cursor()
-#     cur.execute('DELETE FROM info WHERE id = {0}'.format(id))
-#     mysql.connection.commit()
-#     flash('Contact deleted succesfully')
-#     return redirect(url_for('Index'))
-
-# @app.route('/update/<id>', methods=['POST'])
-# def update(id):
-#     if request.method == 'POST':
-#         fullname = request.form['fullname']
-#         phone = request.form['phone']
-#         email = request.form['email']
-#     cur = mysql.connection.cursor()
-#     cur.execute("""UPDATE info 
-#                 SET name = %s,
-#                 email=%s,
-#                 phone= %s 
-#                 WHERE id = %s""",
-#                 (fullname,email,phone,id))
-#     mysql.connection.commit()
-#     flash('Contact updated succesfully')
-#     return redirect(url_for('Index'))
+        data = json.loads(request.data)
+        
+        if data['method']=='bpa':
+            exec_alg = alg.bpa(data['ei'],data['ef'])
+        if data['method']=='bpp':
+            exec_alg = alg.bpp(data['ei'],data['ef'],data['bpp_limit'])
+        if data['method']=='hill':
+            exec_alg = alg.hill_climbing(data['ei'],data['ef'])
+        if data['method']=='ram':
+            exec_alg = alg.branch(data['ei'],data['ef'])
+        if data['method']=='a*':
+            exec_alg = alg.asterisk(data['ei'],data['ef'])
+        if data['method']=='gen':
+            exec_alg = alg.genetic(data['ei'],data['ef'])
+    return jsonify(
+        code=1,
+        description='post 200',
+        data= exec_alg
+    )
 
 
 if __name__ == '__main__':
-    app.run(port=3000, debug=True)
+    app.run(port=5000, debug=True)
