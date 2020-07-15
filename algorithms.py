@@ -34,7 +34,7 @@ class Algorithms:
         while openn and flag_end_state == False:
             counter += 1
             s = openn.pop(0)
-            # print (s, end = " ")
+            print (s, end = " ")
 
             # si el nodo no esta en CERRADO y su padre no es el mismo
             if len(closedd)>0:
@@ -49,13 +49,21 @@ class Algorithms:
                 #     successors = Operations.getSuccesors(self, rules, s,node_num,closedd)
                 #     node_num = successors[len(successors)-1][0][0]
                 # equal_array = False
-                for cl in closedd:
-                    equal_arr = Operations.compare2Matrix(s[1], cl[1])
-                    if equal_arr == False and s[0][1] != cl[0][1]:
-                        closedd.append(s)
-                        print("get succesors")
-                        successors = Operations.getSuccesors(self, rules, s,node_num,closedd)
+                
+                
+                already_closed = Operations.compareCloseddAndSuccesor(self,closedd,s)
+                # for cl in closedd:
+                    # equal_arr = Operations.compare2Matrix(s[1], cl[1])
+                if already_closed==False:
+                    closedd.append(s)
+                    print("get succesorsss")
+                    successors = Operations.getSuccesors(self, rules, s,node_num,closedd)
+                    if len(successors)>0:
                         node_num = successors[len(successors)-1][0][0]
+                    else:
+                        print("no hay sucesores")
+                        # node_num = successors[0][0][0]
+                        
             else:
                 closedd.append(s)
                 print("get succesors")

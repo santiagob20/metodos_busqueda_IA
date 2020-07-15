@@ -44,7 +44,8 @@
         .txt-light {
             color: var(--color5);
         }
-        .txt-red{
+
+        .txt-red {
             color: var(--color2);
 
         }
@@ -194,6 +195,12 @@
                             <br>
                             <button class="btn btn-primary btn-block" style="background-color: #333333;" type="button"
                                 @click="sendSearchMethod">Calcular<i class="fas fa-brain"></i></button>
+                                <br>
+                            <div class="text-center" v-if="spinner_loading">
+                                <div class="spinner-border" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -250,7 +257,8 @@
                 URI: 'http://127.0.0.1:5000',
                 nodos_result: 0,
                 data_result: {},
-                alert_message: ''
+                alert_message: '',
+                spinner_loading: false
             },
             created: function () {
 
@@ -344,15 +352,23 @@
                                 this.dataGraph.bpp_limit = parseInt(document.getElementById("bpp_limit").value)
                             }
                             let context = this;
+                            context.spinner_loading = true
                             // aca hace peticion http
-                            axios.post(context.URI + '/search_method', context.dataGraph).then(response => {
+                            axios({
+                                method: 'post',
+                                url: context.URI + '/search_method',
+                                data: context.dataGraph,
+                                timeout: 1000 * 120
+                            }).then(response => {
                                 context.showToast("Algoritmo ejecutado correctamente")
                                 // Respuesta del servidor
+                                context.spinner_loading = false
                                 console.log(response.data)
                                 context.nodos_result = response.data.data.total_nodes
                                 context.data_result = response.data.data.route
                             }).catch(e => {
                                 console.log(e);
+                                context.spinner_loading = false
                             });
                         } else {
                             this.showToast("Seleccione un método de búsqueda primero")
