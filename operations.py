@@ -17,6 +17,7 @@ class Operations:
             compare = arr1 == arr2
             if compare.all():
                 flag_repeated = True
+                break
         return flag_repeated
     
     def compare2Matrix(mat1,mat2):

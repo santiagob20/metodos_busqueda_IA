@@ -113,43 +113,43 @@
                         Formulario de ingreso de parámetros
                     </div>
                     <form>
-                        <div class="card-body">
+                        <div class="card-body" style="height: 700px;">
                             <div class="row">
                                 <div class="col-lg-6" align="center">
                                     <h5 class="card-title">Estado inicial</h5>
                                     <div>
-                                        <input id="ei_0" class="inputmatriz" type="number" value="3">
-                                        <input id="ei_1" class="inputmatriz" type="number" value="4">
-                                        <input id="ei_2" class="inputmatriz" type="number" value="2">
+                                        <input id="ei_0" class="inputmatriz" type="number" :value="dataGraph.ei[0][0]">
+                                        <input id="ei_1" class="inputmatriz" type="number" :value="dataGraph.ei[0][1]">
+                                        <input id="ei_2" class="inputmatriz" type="number" :value="dataGraph.ei[0][2]">
                                     </div>
                                     <div>
-                                        <input id="ei_3" class="inputmatriz" type="number" value="8">
-                                        <input id="ei_4" class="inputmatriz" type="number" value="0">
-                                        <input id="ei_5" class="inputmatriz" type="number" value="6">
+                                        <input id="ei_3" class="inputmatriz" type="number" :value="dataGraph.ei[1][0]">
+                                        <input id="ei_4" class="inputmatriz" type="number" :value="dataGraph.ei[1][1]">
+                                        <input id="ei_5" class="inputmatriz" type="number" :value="dataGraph.ei[1][2]">
                                     </div>
                                     <div>
-                                        <input id="ei_6" class="inputmatriz" type="number" value="1">
-                                        <input id="ei_7" class="inputmatriz" type="number" value="7">
-                                        <input id="ei_8" class="inputmatriz" type="number" value="5">
+                                        <input id="ei_6" class="inputmatriz" type="number" :value="dataGraph.ei[2][0]">
+                                        <input id="ei_7" class="inputmatriz" type="number" :value="dataGraph.ei[2][1]">
+                                        <input id="ei_8" class="inputmatriz" type="number" :value="dataGraph.ei[2][2]">
                                     </div>
 
                                 </div>
                                 <div class="col-lg-6" align="center">
                                     <h5 class="card-title">Estado final</h5>
                                     <div>
-                                        <input id="ef_0" class="inputmatriz" type="number" value="1">
-                                        <input id="ef_1" class="inputmatriz" type="number" value="2">
-                                        <input id="ef_2" class="inputmatriz" type="number" value="3">
+                                        <input id="ef_0" class="inputmatriz" type="number" :value="dataGraph.ef[0][0]">
+                                        <input id="ef_1" class="inputmatriz" type="number" :value="dataGraph.ef[0][1]">
+                                        <input id="ef_2" class="inputmatriz" type="number" :value="dataGraph.ef[0][2]">
                                     </div>
                                     <div>
-                                        <input id="ef_3" class="inputmatriz" type="number" value="4">
-                                        <input id="ef_4" class="inputmatriz" type="number" value="5">
-                                        <input id="ef_5" class="inputmatriz" type="number" value="6">
+                                        <input id="ef_3" class="inputmatriz" type="number" :value="dataGraph.ef[1][0]">
+                                        <input id="ef_4" class="inputmatriz" type="number" :value="dataGraph.ef[1][1]">
+                                        <input id="ef_5" class="inputmatriz" type="number" :value="dataGraph.ef[1][2]">
                                     </div>
                                     <div>
-                                        <input id="ef_6" class="inputmatriz" type="number" value="7">
-                                        <input id="ef_7" class="inputmatriz" type="number" value="8">
-                                        <input id="ef_8" class="inputmatriz" type="number" value="0">
+                                        <input id="ef_6" class="inputmatriz" type="number" :value="dataGraph.ef[2][0]">
+                                        <input id="ef_7" class="inputmatriz" type="number" :value="dataGraph.ef[2][1]">
+                                        <input id="ef_8" class="inputmatriz" type="number" :value="dataGraph.ef[2][2]">
                                     </div>
                                 </div>
                             </div>
@@ -193,12 +193,13 @@
                                     id="bpp_limit" aria-describedby="inputGroup-sizing-sm">
                             </div>
                             <br>
+                            <p><b>Nota:</b>Puede ejecutar el algoritmo varias veces para ejecutar las reglas de busqueda en distinto orden (Puede llegar a la respuesta con dinstinto número de nodos)</p>
                             <button class="btn btn-primary btn-block" style="background-color: #333333;" type="button"
                                 @click="sendSearchMethod">Calcular<i class="fas fa-brain"></i></button>
-                                <br>
+                            <br>
                             <div class="text-center" v-if="spinner_loading">
                                 <div class="spinner-border" role="status">
-                                    <span class="sr-only">Loading...</span>
+                                    <span class="sr-only">Calculando...</span>
                                 </div>
                             </div>
                         </div>
@@ -216,9 +217,18 @@
                     <div class="card-header">
                         Resultados
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="height: 700px;overflow-y: auto;">
                         <h6>Nodos generados: [[nodos_result]]</h6>
-                        <h6>Resultado generados: [[data_result]]</h6>
+                        <h6>Pasos generados [[total_steps]]</h6>
+                        <div v-for="node in data_result" v-if="render_graph">
+                            <br>
+                            Nodo # [[(node[0][0])]]
+                            <p v-for="tuple in node[1]">
+                                <!-- [[tuple[0]]]|[[tuple[1]]]|[[tuple[2]]] -->
+                                [[tuple]]
+                            </p>
+                            <br>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -247,8 +257,8 @@
             data: {
                 methodtype: '',
                 dataGraph: {
-                    ei: [[], [], []],
-                    ef: [[], [], []],
+                    ei: [['2', '0', '3'], ['1', '8', '4'], ['7', '6', '5']],
+                    ef: [['1', '2', '3'], ['8', '0', '4'], ['7', '6', '5']],
                     method: ''
                 },
                 flag_allowed: true,
@@ -256,9 +266,11 @@
                 flag_null: true,
                 URI: 'http://127.0.0.1:5000',
                 nodos_result: 0,
-                data_result: {},
+                data_result: [[[0, 0, 0, 0], [['0', '0', '0'], ['0', '0', '0'], ['0', '0', '0']]]],
                 alert_message: '',
-                spinner_loading: false
+                spinner_loading: false,
+                render_graph: false,
+                total_steps: 0
             },
             created: function () {
 
@@ -358,14 +370,23 @@
                                 method: 'post',
                                 url: context.URI + '/search_method',
                                 data: context.dataGraph,
-                                timeout: 1000 * 120
+                                timeout: 1000 * 3600
                             }).then(response => {
                                 context.showToast("Algoritmo ejecutado correctamente")
                                 // Respuesta del servidor
                                 context.spinner_loading = false
                                 console.log(response.data)
-                                context.nodos_result = response.data.data.total_nodes
-                                context.data_result = response.data.data.route
+                                if (response.data.data.total_nodes == 'Indeterminado') {
+                                    context.render_graph = false
+                                    context.total_steps = 0
+                                    context.nodos_result = response.data.data.route
+                                    context.data_result = [[[0, 0, 0, 0], [['0', '0', '0'], ['0', '0', '0'], ['0', '0', '0']]]]
+                                } else {
+                                    context.nodos_result = response.data.data.total_nodes
+                                    context.data_result = response.data.data.route
+                                    context.render_graph = true
+                                    context.total_steps = response.data.data.route.length
+                                }
                             }).catch(e => {
                                 console.log(e);
                                 context.spinner_loading = false
