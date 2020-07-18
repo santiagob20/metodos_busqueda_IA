@@ -359,7 +359,7 @@
 
 
                     if (this.flag_allowed && this.flag_unique && this.flag_null) {
-                        if (this.dataGraph.method != "") {
+                        if (this.dataGraph.method != "" && this.bpp_limit!==null) {
                             if (this.dataGraph.method == 'bpp') {
                                 this.dataGraph.bpp_limit = parseInt(document.getElementById("bpp_limit").value)
                             }
